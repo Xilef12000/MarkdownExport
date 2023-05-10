@@ -3,7 +3,7 @@ import sublime
 import sublime_plugin
 import webbrowser
 import codecs
-import markdown
+from .markdown import markdown
 
 package_path = sublime.packages_path() + "/MarkdownExport/"
 
@@ -25,7 +25,7 @@ class markdown_export_command(sublime_plugin.TextCommand):
             selection = sublime.Region(0, self.view.size())
             md = self.view.substr(selection)
 
-            html = markdown.markdown(md)
+            html = markdown(md)
             out = html_template.replace("<% TITLE %>", md_name).replace("<% HTML %>", html).replace("<% STYLE %>", css_template)
 
             html_file = os.path.splitext(md_file)[0] + '.html'
