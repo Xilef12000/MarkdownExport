@@ -1,5 +1,5 @@
 # MarkdownExport
-**Markdown Export for Sublimetext 3/4**
+**Markdown Export for Sublimetext using custom Templates**
 
 ## Usage:
 open your Command palette (`Ctrl+Shift+P`) and use `Markdown Export`
