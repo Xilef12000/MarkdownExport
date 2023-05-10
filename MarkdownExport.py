@@ -3,6 +3,7 @@ import sublime
 import sublime_plugin
 import webbrowser
 import codecs
+import re
 from .markdown import markdown
 
 package_path = sublime.packages_path() + "/MarkdownExport/"
@@ -23,15 +24,24 @@ class markdown_export_command(sublime_plugin.TextCommand):
     def run(self, edit):
         try:
             html_template = load_utf8(package_path + "templates/" + html_template_name)
-            #css_template = load_utf8(package_path + "template.css")
-            css_template = ""
+            depend = re.findall('<%- (.*?) -%>', html_template, re.DOTALL)
+            insert = re.findall('<%= (.*?) =%>', html_template, re.DOTALL)
             md_file = self.view.window().active_view().file_name()
             md_name = os.path.splitext(os.path.basename(md_file))[0]
             selection = sublime.Region(0, self.view.size())
             md = self.view.substr(selection)
 
             html = markdown(md)
-            out = html_template.replace("<% TITLE %>", md_name).replace("<% HTML %>", html).replace("<% STYLE %>", css_template)
+
+            out = html_template
+            if 'TITLE' in insert:
+                out = out.replace("<%= TITLE =%>", md_name)
+            if 'HTML' in insert:
+                out = out.replace("<%= HTML =%>", html)
+            for item in depend:
+                item_file_name = settings.get("templates").get(template_name).get(item)
+                item_file = load_utf8(package_path + "templates/" + item_file_name)
+                out = out.replace("<%- " + item + " -%>", item_file)
 
             html_file = os.path.splitext(md_file)[0] + '.html'
             #sublime.error_message(htmlfile)
