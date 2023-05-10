@@ -3,6 +3,7 @@ import sublime
 import sublime_plugin
 import webbrowser
 import codecs
+import markdown
 
 # The plugin is partially based on the GitHubMarkdownPreview plugin by dotcypress
 # https://github.com/dotcypress/GitHubMarkdownPreview
@@ -18,7 +19,7 @@ class markdown_export_command(sublime_plugin.TextCommand):
             selection = sublime.Region(0, self.view.size())
             md = self.view.substr(selection)
 
-            html = md
+            html = markdown.markdown(md)
 
             mdfile = self.view.window().active_view().file_name()
             htmlfile = os.path.splitext(mdfile)[0] + '.html'
