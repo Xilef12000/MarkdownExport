@@ -1,0 +1,19 @@
+{
+  "name"       : "MarkdownExport",
+  "author"     : "Xilef12000",
+  "description": "Markdown Export for Sublimetext 3/4",
+  "version"    : "1.0.0",
+  "repository" : {
+    "type": "git",
+    "url" : "https://github.com/Xilef12000/MarkdownExport.git"
+  },
+  "url": "https://github.com/Xilef12000/MarkdownExport",
+  "keywords"   : [
+    "markdown",
+    "sublimetext",
+    "export"
+  ],
+  "license"     : "MIT",
+  "platforms": ["*"],
+  "sublime_text": "*"
+}
