@@ -5,8 +5,6 @@ import webbrowser
 import codecs
 import markdown
 
-# The plugin is partially based on the GitHubMarkdownPreview plugin by dotcypress
-# https://github.com/dotcypress/GitHubMarkdownPreview
 
 def save_utf8(filename, text):
     """Save to UTF8 file."""
