@@ -1,6 +1,4 @@
-Using  sublime-markdown by facelessuser:
-https://github.com/facelessuser/sublime-markdown
-
+Using [sublime-markdown by facelessuser](https://github.com/facelessuser/sublime-markdown)
 
 
 Copyright 2007, 2008 The Python Markdown Project (v. 1.7 and later)  
