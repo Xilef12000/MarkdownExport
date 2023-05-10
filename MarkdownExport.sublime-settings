@@ -1,0 +1,11 @@
+{
+	"template":"default",
+	"templates":
+	{
+		"default":
+		{
+			"html":"default.html",
+			"STYLE":"default.css"
+		}
+	}
+}

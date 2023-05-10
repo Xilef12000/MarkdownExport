@@ -7,6 +7,10 @@ from .markdown import markdown
 
 package_path = sublime.packages_path() + "/MarkdownExport/"
 
+settings = sublime.load_settings('MarkdownExport.sublime-settings')
+template_name = settings.get("template")
+html_template_name = settings.get("templates").get(template_name).get("html")
+
 def save_utf8(filename, text):
     with codecs.open(filename, 'w', encoding='utf-8')as f:
         f.write(text)
@@ -18,8 +22,9 @@ def load_utf8(filename):
 class markdown_export_command(sublime_plugin.TextCommand):
     def run(self, edit):
         try:
-            html_template = load_utf8(package_path + "template.html")
-            css_template = load_utf8(package_path + "template.css")
+            html_template = load_utf8(package_path + "templates/" + html_template_name)
+            #css_template = load_utf8(package_path + "template.css")
+            css_template = ""
             md_file = self.view.window().active_view().file_name()
             md_name = os.path.splitext(os.path.basename(md_file))[0]
             selection = sublime.Region(0, self.view.size())
