@@ -1,1 +1,3 @@
-markdown/* linguist-vendored
+markdown/** linguist-vendored
+templates/github.* linguist-vendored
+templates/* -linguist-detectable
