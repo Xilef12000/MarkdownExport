@@ -62,4 +62,4 @@ class markdown_export_command(sublime_plugin.TextCommand):
 
             webbrowser.open("file://" + htmlfile)
         except Exception as e:
-            sublime.error_message("Error in GitHubMarkdownPreview package:\n\n" + str(e))
+            sublime.error_message("Error in MarkdownExport package:\n\n" + str(e))
