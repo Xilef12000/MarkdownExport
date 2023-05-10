@@ -1,0 +1,15 @@
+{
+	"template":"github",
+	"templates":
+	{
+		"default":
+		{
+			"html":"default.html",
+		},
+		"github":
+		{
+			"html":"github.html",
+			"STYLE":"github.css"
+		}
+	}
+}
