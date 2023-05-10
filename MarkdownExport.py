@@ -9,20 +9,6 @@ import codecs
 # The plugin is partially based on the GitHubMarkdownPreview plugin by dotcypress
 # https://github.com/dotcypress/GitHubMarkdownPreview
 
-# The python package included with sublime text for Linux is missing the ssl
-# module (for technical reasons), so this import will fail. But, we can use the
-# curl command instead, which should be present on just about any Linux.
-use_curl = False
-try:
-    import ssl
-except ImportError as e:
-    use_curl = True
-
-try:
-    import urllib2
-except ImportError:
-    import urllib.request
-
 html = """<!doctype html>
 <html>
 	<head>
@@ -43,19 +29,6 @@ window.addEvent("domready",function(){var t=$("body"),e=(window.location.hash.su
 	</body>
 </html>
 """
-
-def call_exe(command, dir):
-    process = subprocess.Popen(
-        command,
-        cwd=dir,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        universal_newlines=True)
-    stdout, stderr = process.communicate()
-    exit_code = process.wait()
-    if exit_code:
-        raise Exception(stdout)
-    return stdout
 
 def generate_preview(text):
     # templatefile = open(os.path.join(sublime.packages_path(), "Markdown HTML Preview", "dist", "index.html"), "r")
