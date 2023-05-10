@@ -1,5 +1,5 @@
 {
-	"template":"github",
+	"template":"xilef12000",
 	"templates":
 	{
 		"default":
@@ -10,6 +10,11 @@
 		{
 			"html":"github.html",
 			"STYLE":"github.css"
+		},
+		"xilef12000":
+		{
+			"html":"xilef.html",
+			"STYLE":"xilef.css"
 		}
 	}
 }
