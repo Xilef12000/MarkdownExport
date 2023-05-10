@@ -23,10 +23,15 @@ def load_utf8(filename):
 class markdown_export_command(sublime_plugin.TextCommand):
     def run(self, edit):
         try:
+            md_file = self.view.window().active_view().file_name()
+            file_type = os.path.splitext(md_file)[1]
+            allowed_file_types = [".md", ".MD", ".markdown", ".Markdown"]
+            if not file_type in allowed_file_types:
+                sublime.error_message(md_file  + "\nis not a Markdown file\n\n")
+                return 1
             html_template = load_utf8(package_path + "templates/" + html_template_name)
             depend = re.findall('<%- (.*?) -%>', html_template, re.DOTALL)
             insert = re.findall('<%= (.*?) =%>', html_template, re.DOTALL)
-            md_file = self.view.window().active_view().file_name()
             md_name = os.path.splitext(os.path.basename(md_file))[0]
             selection = sublime.Region(0, self.view.size())
             md = self.view.substr(selection)
