@@ -2,12 +2,14 @@
 **Markdown Export for Sublimetext using custom Templates**
 
 ## Usage:
-open your Command palette (`Ctrl+Shift+P`) and use `Markdown Export`  
+open your Command Palette (`Ctrl+Shift+P`) and use `Markdown Export`  
 
 ## Installation
-Clone the repository into your Package Directory in the `User` Folder  
-(The Path should look something like this: `~/.config/sublime-text/Packages/User/MarkdownExport`)  
-Make sure you name the directory `MarkdownExport`   
+1. open your Command Palette (`Ctrl+Shift+P`), type `Package Control: Add Repository`, and press enter
+2. add the url of this Repository (`https://github.com/Xilef12000/MarkdownExport`) in the input-bar on the bottom of your screen, and press enter
+3. open the Command Palette again and search for `Package Control: Install Package`, press enter
+4. search for `MarkdownExport`
+5. press enter to install
 
 ## Attribution
 This package uses code snippets from:
