@@ -14,7 +14,8 @@
 		"xilef12000":
 		{
 			"html":"xilef.html",
-			"STYLE":"xilef.css"
+			"STYLE":"xilef.css",
+			"FONTS":"xilef_fonts.css"
 		}
 	}
 }
