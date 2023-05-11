@@ -6,12 +6,6 @@ import codecs
 import re
 from .markdown import markdown
 
-package_path = sublime.packages_path() + "/MarkdownExport/"
-
-settings = sublime.load_settings('MarkdownExport.sublime-settings')
-template_name = settings.get("template")
-html_template_name = settings.get("templates").get(template_name).get("html")
-
 def save_utf8(filename, text):
     with codecs.open(filename, 'w', encoding='utf-8')as f:
         f.write(text)
@@ -23,6 +17,12 @@ def load_utf8(filename):
 class markdown_export_command(sublime_plugin.TextCommand):
     def run(self, edit):
         try:
+            package_path = sublime.packages_path() + "/MarkdownExport/"
+
+            settings = sublime.load_settings('MarkdownExport.sublime-settings')
+            template_name = settings.get("template")
+            html_template_name = settings.get("templates").get(template_name).get("html")
+
             md_file = self.view.window().active_view().file_name()
             file_type = os.path.splitext(md_file)[1]
             allowed_file_types = [".md", ".MD", ".markdown", ".Markdown"]
