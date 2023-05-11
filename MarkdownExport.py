@@ -23,16 +23,16 @@ class markdown_export_command(sublime_plugin.TextCommand):
             template_name = settings.get("template")
             html_template_name = settings.get("templates").get(template_name).get("html")
 
-            md_file = self.view.window().active_view().file_name()
-            file_type = os.path.splitext(md_file)[1]
-            allowed_file_types = [".md", ".MD", ".markdown", ".Markdown"]
-            if not file_type in allowed_file_types:
-                sublime.error_message(md_file  + "\nis not a Markdown file\n\n")
+            md_path = self.view.window().active_view().file_name()
+
+            if not os.path.splitext(md_path)[1] in [".md", ".MD", ".markdown", ".Markdown"]:
+                sublime.error_message(md_path  + "\nis not a Markdown file\n\n")
                 return 1
+
             html_template = load_utf8(package_path + "templates/" + html_template_name)
             depend = re.findall('<%- (.*?) -%>', html_template, re.DOTALL)
             insert = re.findall('<%= (.*?) =%>', html_template, re.DOTALL)
-            md_name = os.path.splitext(os.path.basename(md_file))[0]
+            md_name = os.path.splitext(os.path.basename(md_path))[0]
             selection = sublime.Region(0, self.view.size())
             md = self.view.substr(selection)
 
@@ -48,10 +48,9 @@ class markdown_export_command(sublime_plugin.TextCommand):
                 item_file = load_utf8(package_path + "templates/" + item_file_name)
                 out = out.replace("<%- " + item + " -%>", item_file)
 
-            html_file = os.path.splitext(md_file)[0] + '.html'
-            #sublime.error_message(htmlfile)
-            save_utf8(html_file, out)
+            out_path = os.path.splitext(md_path)[0] + '.html'
+            save_utf8(out_path, out)
 
-            webbrowser.open("file://" + html_file)
+            webbrowser.open("file://" + out_path)
         except Exception as e:
             sublime.error_message("Error in MarkdownExport package:\n\n" + str(e))
