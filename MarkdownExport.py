@@ -20,8 +20,7 @@ class markdown_export_command(sublime_plugin.TextCommand):
             package_path = sublime.packages_path() + "/MarkdownExport/"
 
             settings = sublime.load_settings('MarkdownExport.sublime-settings')
-            template_name = settings.get("template")
-            html_template_name = settings.get("templates").get(template_name).get("html")
+            template_inuse = settings.get("template")
 
             md_path = self.view.window().active_view().file_name()
 
@@ -29,22 +28,20 @@ class markdown_export_command(sublime_plugin.TextCommand):
                 sublime.error_message(md_path  + "\nis not a Markdown file\n\n")
                 return 1
 
-            html_template = load_utf8(package_path + "templates/" + html_template_name)
-            depend = re.findall('<%- (.*?) -%>', html_template, re.DOTALL)
-            insert = re.findall('<%= (.*?) =%>', html_template, re.DOTALL)
-            md_name = os.path.splitext(os.path.basename(md_path))[0]
-            selection = sublime.Region(0, self.view.size())
-            md = self.view.substr(selection)
+            html_template = load_utf8(package_path + "templates/" + settings.get("templates").get(template_inuse).get("html"))
+            template_load = re.findall('<%- (.*?) -%>', html_template, re.DOTALL)
+            template_insert = re.findall('<%= (.*?) =%>', html_template, re.DOTALL)
 
-            html = markdown(md)
+            md = self.view.substr(sublime.Region(0, self.view.size()))
 
             out = html_template
-            if 'TITLE' in insert:
-                out = out.replace("<%= TITLE =%>", md_name)
-            if 'HTML' in insert:
-                out = out.replace("<%= HTML =%>", html)
-            for item in depend:
-                item_file_name = settings.get("templates").get(template_name).get(item)
+
+            if 'TITLE' in template_insert:
+                out = out.replace("<%= TITLE =%>", os.path.splitext(os.path.basename(md_path))[0])
+            if 'HTML' in template_insert:
+                out = out.replace("<%= HTML =%>", markdown(md))
+            for item in template_load:
+                item_file_name = settings.get("templates").get(template_inuse).get(item)
                 item_file = load_utf8(package_path + "templates/" + item_file_name)
                 out = out.replace("<%- " + item + " -%>", item_file)
 
@@ -52,5 +49,6 @@ class markdown_export_command(sublime_plugin.TextCommand):
             save_utf8(out_path, out)
 
             webbrowser.open("file://" + out_path)
+            
         except Exception as e:
             sublime.error_message("Error in MarkdownExport package:\n\n" + str(e))
