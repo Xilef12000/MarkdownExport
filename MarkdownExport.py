@@ -5,6 +5,7 @@ import webbrowser
 import codecs
 import re
 from .markdown import markdown
+from .markdown.extensions.tables import TableExtension
 
 def save_utf8(filename, text):
     with codecs.open(filename, 'w', encoding='utf-8')as f:
@@ -42,7 +43,7 @@ class markdown_export_command(sublime_plugin.TextCommand):
             if 'TITLE' in template_insert:
                 out = out.replace("<%= TITLE =%>", os.path.splitext(os.path.basename(md_path))[0])
             if 'HTML' in template_insert:
-                out = out.replace("<%= HTML =%>", markdown(md))
+                out = out.replace("<%= HTML =%>", markdown(md, extensions=[TableExtension()]))
             while not template_load == []:
                 for item in template_load:
                     item_file_name = settings.get("templates").get(template_inuse).get(item)
