@@ -3,7 +3,9 @@ body, html, article {
 	font-family: Poppins, Verdana, sans-serif, sans;
 }
 body {
-	width: 980px;
+	width: 50vw;
+  min-width: calc(1920px/2);
+  max-width: 1920px;
 	margin-right: auto;
 	margin-left: auto;
 	color:#000000;
