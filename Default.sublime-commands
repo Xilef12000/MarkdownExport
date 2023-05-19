@@ -1,6 +1,10 @@
 [
     {
-        "caption": "Markdown Export",
+        "caption": "Markdown: Export",
         "command": "markdown_export"
+    },
+    {
+        "caption": "Markdown: Print",
+        "command": "markdown_print"
     }
 ]
