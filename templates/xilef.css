@@ -6,8 +6,8 @@ body {
 	width: 980px;
 	margin-right: auto;
 	margin-left: auto;
-	color:#000;
-	background:#fff;
+	color:#000000;
+	background:#ffffff;
 }
 article {
   padding: 45px;
@@ -24,13 +24,14 @@ img {
   background-color: inherit;
   box-sizing: content-box;
   max-width: 100%;
+  border-radius: 4px;
 }
 code, kbd, pre {
   font-family:  FiraCode-Retina, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
   white-space: pre-line;
   font-size: 1rem;
   background-color: #e8e8e8;
-  border-radius: 3px;
+  border-radius: 4px;
   margin: 0;
   padding: .2rem .4rem;
 }
@@ -40,7 +41,7 @@ hr {
   overflow: visible;
 }
 a {
-  color: #06f;
+  color: #0066ff;
   text-decoration: none;
   font-weight: 500;
 }
@@ -48,13 +49,13 @@ a:hover {
   text-decoration: underline;
 }
 table {
-  border-collapse: collapse;
+  border-collapse: separate;
   border-spacing: 0;
-  display: block;
   overflow: auto;
-  width: 100%;
   margin-bottom: 1rem;
   margin-top: 0;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
 }
 td, th {
   padding: 0;
@@ -64,12 +65,10 @@ table th {
   background-color: #e8e8e8;
 }
 table td, table th {
-  border: 1px solid #e8e8e8;
   padding: 6px 13px;
 }
 table tr {
   background-color: #fff;
-  border-top: 1px solid #e8e8e8;
 }
 table tr:nth-child(2n) {
   background-color: #f3f3f3;
