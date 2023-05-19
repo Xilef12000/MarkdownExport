@@ -2,7 +2,8 @@
 **Markdown Export for Sublimetext using custom Templates**
 
 ## Usage:
-open your Command Palette (`Ctrl+Shift+P`) and use `Markdown Export`  
+to Export Markdown to HTML and open automatically in browser, open your Command Palette (`Ctrl+Shift+P`) and use `Markdown: Export`  
+to Export Markdown to HTML and open automatically in browser, and open the print dialogue, open your Command Palette (`Ctrl+Shift+P`) and use `Markdown: Print`  
 
 ## Installation
 1. open your Command Palette (`Ctrl+Shift+P`), type `Package Control: Add Repository`, and press enter
