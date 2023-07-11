@@ -6,6 +6,7 @@ import codecs
 import re
 from .markdown import markdown
 from .markdown.extensions.tables import TableExtension
+from .markdown.extensions.toc import TocExtension
 
 def save_utf8(filename, text):
     with codecs.open(filename, 'w', encoding='utf-8')as f:
@@ -45,7 +46,7 @@ def process_markdown(self, print=False):
     if 'TITLE' in template_insert:
         out = out.replace("<%= TITLE =%>", os.path.splitext(os.path.basename(md_path))[0])
     if 'HTML' in template_insert:
-        out = out.replace("<%= HTML =%>", markdown(md, extensions=[TableExtension()]))
+        out = out.replace("<%= HTML =%>", markdown(md, extensions=[TableExtension(), TocExtension()]))
     while not template_load == []:
         for item in template_load:
             item_file_name = settings.get("templates").get(template_inuse).get(item)
