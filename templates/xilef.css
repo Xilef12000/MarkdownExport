@@ -30,7 +30,7 @@ img {
 }
 code, kbd, pre {
   font-family:  FiraCode-Retina, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
-  white-space: pre-line;
+  white-space: pre;
   font-size: 1rem;
   background-color: #e8e8e8;
   border-radius: 4px;
